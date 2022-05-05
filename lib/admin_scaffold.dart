@@ -195,7 +195,13 @@ class _AdminScaffoldState extends State<AdminScaffold>
                               ),
                             )
                           : SizedBox(),
-                      Expanded(
+                      widget.sideBar==null?Expanded(
+                        child: Align(
+                          alignment: Alignment.topCenter,
+                          child: widget.body,
+                        ),
+                      ):Container(
+                        width: MediaQuery.of(context).size.width-widget.sideBar!.width,
                         child: Align(
                           alignment: Alignment.topCenter,
                           child: widget.body,
