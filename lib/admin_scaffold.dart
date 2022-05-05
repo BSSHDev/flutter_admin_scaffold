@@ -60,6 +60,7 @@ class _AdminScaffoldState extends State<AdminScaffold>
     setState(() {
       _isMobile = mediaQuery.size.width < _mobileThreshold;
       _isOpenSidebar = !_isMobile;
+      print(_isOpenSidebar);
       _animationController.value = _isMobile ? 0 : 1;
       _screenWidth = mediaQuery.size.width;
     });
@@ -74,6 +75,7 @@ class _AdminScaffoldState extends State<AdminScaffold>
   void _toggleSidebar() {
     setState(() {
       _isOpenSidebar = !_isOpenSidebar;
+      print(_isOpenSidebar);
       if (_isOpenSidebar)
         _animationController.forward();
       else
@@ -99,6 +101,7 @@ class _AdminScaffoldState extends State<AdminScaffold>
     final delta = details.primaryDelta ?? 0.0;
     if (delta < 0) {
       _isOpenSidebar = false;
+      print(_isOpenSidebar);
       _animationController.reverse();
     }
   }
@@ -114,10 +117,12 @@ class _AdminScaffoldState extends State<AdminScaffold>
       if (_animationController.isCompleted) {
         setState(() {
           _isOpenSidebar = true;
+          print(_isOpenSidebar);
         });
       } else {
         setState(() {
           _isOpenSidebar = false;
+          print(_isOpenSidebar);
         });
       }
     } else {
@@ -125,11 +130,13 @@ class _AdminScaffoldState extends State<AdminScaffold>
         _animationController.reverse();
         setState(() {
           _isOpenSidebar = false;
+          print(_isOpenSidebar);
         });
       } else {
         _animationController.forward();
         setState(() {
           _isOpenSidebar = true;
+          print(_isOpenSidebar);
         });
       }
     }
@@ -195,13 +202,8 @@ class _AdminScaffoldState extends State<AdminScaffold>
                               ),
                             )
                           : SizedBox(),
-                      widget.sideBar==null?Expanded(
-                        child: Align(
-                          alignment: Alignment.topCenter,
-                          child: widget.body,
-                        ),
-                      ):Container(
-                        width: MediaQuery.of(context).size.width-widget.sideBar!.width,
+                      Container(
+                        width: _isOpenSidebar?_screenWidth-widget.sideBar!.width:_screenWidth,
                         child: Align(
                           alignment: Alignment.topCenter,
                           child: widget.body,
