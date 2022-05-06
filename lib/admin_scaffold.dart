@@ -123,7 +123,10 @@ class _AdminScaffoldState extends State<AdminScaffold>
                       Container(
                         width: _isOpenSidebar?_screenWidth-widget.sideBar!.width:_screenWidth,
                         height: MediaQuery.of(context).size.height,
-                        child: widget.body,
+                        child: Align(
+                          alignment: Alignment.topCenter,
+                          child: widget.body,
+                        ),
                       ),
                     ],
                   ),
